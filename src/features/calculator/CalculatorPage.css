@@ -1,0 +1,167 @@
+/* Calculator Page Styles */
+
+.calc-walkthrough-cta {
+  margin-bottom: var(--space-6);
+  cursor: pointer;
+}
+
+.calc-cta-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.calc-cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.calc-cta-title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.calc-cta-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+}
+
+/* Inputs */
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+/* Results */
+.calc-results {
+  margin-bottom: var(--space-6);
+}
+
+.calc-results-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+}
+
+.calc-result-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.calc-result-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.calc-result-highlight {
+  border-color: var(--color-border-accent);
+}
+
+.calc-result-error {
+  border-color: var(--color-error);
+}
+
+.calc-result-label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  font-weight: var(--font-weight-medium);
+}
+
+.calc-result-value {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.calc-result-value small {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+.calc-result-accent {
+  color: var(--color-accent);
+}
+
+.calc-result-sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.calc-result-error-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+}
+
+/* Syringe Section */
+.calc-syringe-section {
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+.calc-syringe-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-6);
+}
+
+.calc-syringe-caption {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-5);
+  line-height: var(--line-height-relaxed);
+}
+
+.calc-syringe-caption strong {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Dose Row */
+.calc-dose-row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-end;
+}
+
+.calc-dose-input {
+  flex: 1;
+}
+
+.calc-dose-unit {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.calc-iu-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  background: var(--color-accent-muted);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  line-height: var(--line-height-relaxed);
+  margin-top: calc(var(--space-2) * -1);
+}

@@ -1,0 +1,26 @@
+/* Syringe Visual Styles */
+
+.syringe-container {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.syringe-svg {
+  width: 120px;
+  height: auto;
+  max-height: 320px;
+}
+
+.syringe-fill {
+  fill: var(--color-accent);
+  opacity: 0.35;
+  transition: y 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.syringe-fill-line {
+  transition: y1 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              y2 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 4px var(--color-accent-glow));
+}

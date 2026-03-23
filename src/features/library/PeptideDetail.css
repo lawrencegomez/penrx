@@ -1,0 +1,198 @@
+/* Peptide Detail Styles */
+
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-4);
+  min-height: 44px;
+}
+
+.detail-header {
+  margin-bottom: var(--space-8);
+}
+
+.detail-name {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+}
+
+.detail-aliases {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-4);
+}
+
+.detail-badges {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Sections */
+.detail-section {
+  margin-bottom: var(--space-8);
+}
+
+.detail-section-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--space-4);
+}
+
+.detail-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Protocol Card */
+.detail-protocol-card {
+  margin-bottom: var(--space-3);
+}
+
+.detail-proto-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-4);
+}
+
+.detail-proto-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-proto-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.detail-proto-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  text-align: right;
+  font-weight: var(--font-weight-medium);
+}
+
+.detail-proto-notes {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+.detail-proto-source {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  display: block;
+  margin-top: var(--space-2);
+}
+
+/* Half-life */
+.detail-halflife {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.detail-halflife-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.detail-halflife-unit {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+/* Side Effects */
+.detail-effects {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-effect-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.detail-effect-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+/* Partners */
+.detail-partner-card {
+  margin-bottom: var(--space-3);
+  cursor: pointer;
+}
+
+.detail-partner-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.detail-partner-notes {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Sources */
+.detail-sources {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-source-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.detail-source-link:hover {
+  border-color: var(--color-accent);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+.detail-source-link > span {
+  flex: 1;
+}

@@ -1,0 +1,241 @@
+// ============================================
+// PenRx Onboarding Flow
+// ============================================
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../data/db';
+import { Button, Card } from '../../components/Components';
+import type { UserProfile } from '../../data/types';
+import './OnboardingFlow.css';
+
+type Step = 'welcome' | 'user-type' | 'disclaimer' | 'complete';
+
+// Clean SVG icons for onboarding features
+const ReconIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 3h6v3a6 6 0 0 1-6 6H9V3z" />
+    <path d="M15 6a6 6 0 0 1 0 6h0" />
+    <line x1="12" y1="15" x2="12" y2="21" />
+    <line x1="9" y1="21" x2="15" y2="21" />
+  </svg>
+);
+
+const TrackingIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+  </svg>
+);
+
+const LibraryIconOB = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+  </svg>
+);
+
+const OnboardingFlow: React.FC = () => {
+  const navigate = useNavigate();
+  const [step, setStep] = useState<Step>('welcome');
+  const [userType, setUserType] = useState<UserProfile['userType']>(undefined);
+
+  const handleComplete = async () => {
+    await db.userProfile.update('default', {
+      hasCompletedOnboarding: true,
+      hasAcceptedDisclaimer: true,
+      userType,
+      updatedAt: new Date().toISOString(),
+    });
+    navigate('/');
+  };
+
+  const handleStartProtocol = async () => {
+    await db.userProfile.update('default', {
+      hasCompletedOnboarding: true,
+      hasAcceptedDisclaimer: true,
+      userType,
+      updatedAt: new Date().toISOString(),
+    });
+    navigate('/calculator/walkthrough');
+  };
+
+  return (
+    <div className="onboarding">
+      {/* Welcome */}
+      {step === 'welcome' && (
+        <div className="ob-screen animate-fade-in-up">
+          <div className="ob-hero">
+            <div className="ob-logo animate-breathe">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L12 8" />
+                <path d="M9 5h6" />
+                <rect x="8" y="8" width="8" height="14" rx="2" />
+                <path d="M10 12h4" />
+                <path d="M10 15h4" />
+              </svg>
+            </div>
+            <h1 className="ob-title">Welcome to PenRx</h1>
+            <p className="ob-subtitle">Your peptide companion</p>
+          </div>
+
+          <div className="ob-features">
+            <div className="ob-feature">
+              <span className="ob-feature-icon"><ReconIcon /></span>
+              <div>
+                <span className="ob-feature-title">Guided Reconstitution</span>
+                <span className="ob-feature-desc">Step-by-step guidance, never guess again</span>
+              </div>
+            </div>
+            <div className="ob-feature">
+              <span className="ob-feature-icon"><TrackingIcon /></span>
+              <div>
+                <span className="ob-feature-title">Smart Tracking</span>
+                <span className="ob-feature-desc">Log doses in under 5 seconds</span>
+              </div>
+            </div>
+            <div className="ob-feature">
+              <span className="ob-feature-icon"><LibraryIconOB /></span>
+              <div>
+                <span className="ob-feature-title">Research Library</span>
+                <span className="ob-feature-desc">Everything you need to know, in plain English</span>
+              </div>
+            </div>
+          </div>
+
+          <Button variant="primary" size="lg" fullWidth onClick={() => setStep('user-type')}>
+            Get Started
+          </Button>
+        </div>
+      )}
+
+      {/* User Type */}
+      {step === 'user-type' && (
+        <div className="ob-screen animate-fade-in-up">
+          <h1 className="ob-title">What brings you here?</h1>
+          <p className="ob-subtitle">This helps us personalize your experience.</p>
+
+          <div className="ob-type-options stagger-children">
+            <Card
+              className={`ob-type-card ${userType === 'first_timer' ? 'ob-type-selected' : ''}`}
+              padding="lg"
+              onClick={() => setUserType('first_timer')}
+            >
+              <div className="ob-type-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+              </div>
+              <span className="ob-type-label">I'm starting my first peptide</span>
+              <span className="ob-type-desc">I need guidance through every step</span>
+            </Card>
+
+            <Card
+              className={`ob-type-card ${userType === 'experienced' ? 'ob-type-selected' : ''}`}
+              padding="lg"
+              onClick={() => setUserType('experienced')}
+            >
+              <div className="ob-type-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </div>
+              <span className="ob-type-label">I'm already taking peptides</span>
+              <span className="ob-type-desc">I want a better way to track my protocols</span>
+            </Card>
+
+            <Card
+              className={`ob-type-card ${userType === 'exploring' ? 'ob-type-selected' : ''}`}
+              padding="lg"
+              onClick={() => setUserType('exploring')}
+            >
+              <div className="ob-type-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+              <span className="ob-type-label">I'm exploring and want to learn</span>
+              <span className="ob-type-desc">Just curious — show me the library</span>
+            </Card>
+          </div>
+
+          <Button
+            variant="primary"
+            size="lg"
+            fullWidth
+            disabled={!userType}
+            onClick={() => setStep('disclaimer')}
+          >
+            Continue
+          </Button>
+        </div>
+      )}
+
+      {/* Disclaimer */}
+      {step === 'disclaimer' && (
+        <div className="ob-screen animate-fade-in-up">
+          <h1 className="ob-title">Important Disclaimer</h1>
+
+          <Card padding="lg" className="ob-disclaimer-card">
+            <p className="ob-disclaimer-text">
+              PenRx provides <strong>educational information</strong> about peptides and injectable compounds for research and informational purposes only.
+            </p>
+            <p className="ob-disclaimer-text">
+              PenRx <strong>does not provide</strong> medical advice, diagnosis, treatment recommendations, or dosing instructions.
+            </p>
+            <p className="ob-disclaimer-text">
+              All information is sourced from published research and publicly available medical literature.
+            </p>
+            <p className="ob-disclaimer-text">
+              <strong>Always consult a qualified healthcare professional</strong> before starting, changing, or stopping any protocol.
+            </p>
+            <p className="ob-disclaimer-text ob-disclaimer-small">
+              By continuing, you acknowledge that you have read and understood this disclaimer.
+            </p>
+          </Card>
+
+          <Button
+            variant="primary"
+            size="lg"
+            fullWidth
+            onClick={() => setStep('complete')}
+          >
+            I Acknowledge
+          </Button>
+        </div>
+      )}
+
+      {/* Complete */}
+      {step === 'complete' && (
+        <div className="ob-screen ob-complete animate-scale-in">
+          <div className="ob-complete-check">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h1 className="ob-title">You're all set</h1>
+          <p className="ob-subtitle">What would you like to do first?</p>
+
+          <div className="ob-complete-actions">
+            <Button variant="primary" size="lg" fullWidth onClick={handleStartProtocol}>
+              Set Up My First Protocol
+            </Button>
+            <Button variant="secondary" size="lg" fullWidth onClick={() => {
+              handleComplete();
+            }}>
+              Explore the Library
+            </Button>
+            <Button variant="ghost" size="md" fullWidth onClick={handleComplete}>
+              Skip to dashboard
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default OnboardingFlow;
